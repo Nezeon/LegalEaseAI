@@ -414,242 +414,22 @@ legal-ease-ai/
 
 ## 🚀 **Deployment**
 
-Ready to share your LegalEase AI with the world? Here are multiple deployment options:
-
-### **Frontend Deployment**
-
-#### **Vercel** (Recommended) ⚡
+### **Frontend (Vercel/Netlify)**
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-cd frontend
-vercel --prod
-```
-
-#### **Netlify**
-```bash
-# Build the app
 npm run build
-
-# Deploy the dist folder
-# Upload via Netlify dashboard or CLI
+# Deploy dist/ folder
 ```
 
-#### **GitHub Pages**
+### **Backend (Railway/Heroku)**
 ```bash
-# Add to package.json
-"homepage": "https://yourusername.github.io/integrationgenai"
-
-# Deploy
-npm run deploy
-```
-
-### **Backend Deployment**
-
-#### **Railway** 🚂
-```bash
-# Install Railway CLI
-npm i -g @railway/cli
-
-# Deploy
-railway login
-railway init
-railway up
-```
-
-#### **Heroku** 🟣
-```bash
-# Install Heroku CLI
-npm install -g heroku
-
-# Create app
-heroku create legalease-ai-backend
-
-# Deploy
-git push heroku main
-```
-
-#### **DigitalOcean** 🌊
-```bash
-# Use App Platform
-# Connect your GitHub repo
-# Set build command: npm install && npm start
 # Set environment variables
+# Deploy with Node.js buildpack
 ```
 
-### **Database Deployment**
-
-#### **MongoDB Atlas** ☁️
-1. Create account at [MongoDB Atlas](https://cloud.mongodb.com/)
-2. Create new cluster (free tier available)
-3. Set up database user and password
-4. Whitelist your IP addresses
-5. Get connection string
-
-#### **Firebase** 🔥
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create new project
-3. Enable Authentication
-4. Enable Firestore Database
-5. Generate service account key
-
-### **Environment Variables for Production**
-
-Create production environment files:
-
-#### **Backend Production .env**
-```env
-NODE_ENV=production
-PORT=5000
-
-# Firebase (Production)
-FIREBASE_PROJECT_ID=your-prod-project
-FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxx@your-prod-project.iam.gserviceaccount.com
-FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n..."
-
-# Google AI
-GOOGLE_API_KEY=your-prod-api-key
-GOOGLE_GEMINI_MODEL=gemini-1.5-pro
-
-# Database
-MONGO_URI=mongodb+srv://username:password@prod-cluster.mongodb.net/legalease
-
-# Security
-JWT_SECRET=your-production-jwt-secret
-CORS_ORIGIN=https://yourdomain.com
-
-# Email
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=noreply@yourdomain.com
-EMAIL_PASS=your-app-password
-
-# File Upload
-MAX_FILE_SIZE=10485760
-UPLOAD_DIR=uploads/
-CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
-
-# Monitoring
-SENTRY_DSN=your-sentry-dsn
-```
-
-### **One-Click Deployment**
-
-#### **Deploy to Vercel + Railway** (Recommended)
-1. **Frontend**: Connect your repo to Vercel
-2. **Backend**: Deploy to Railway
-3. **Database**: Use MongoDB Atlas
-4. **Update API URLs** in frontend environment
-
-#### **Docker Deployment** 🐳
-```dockerfile
-# Dockerfile
-FROM node:16-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 5000
-CMD ["npm", "start"]
-```
-
-```bash
-# Build and run
-docker build -t legalease-ai .
-docker run -p 5000:5000 legalease-ai
-```
-
-### **Domain & SSL**
-
-#### **Custom Domain Setup**
-1. Purchase domain from Namecheap, GoDaddy, etc.
-2. Point DNS to your deployment platform
-3. Enable SSL certificate (automatic on most platforms)
-
-#### **SSL Certificate**
-- **Let's Encrypt**: Free SSL certificates
-- **Cloudflare**: Free SSL + CDN
-- **Platform SSL**: Most deployment platforms provide free SSL
-
-### **Monitoring & Analytics**
-
-#### **Application Monitoring**
-- **Sentry**: Error tracking and performance monitoring
-- **LogRocket**: User session recordings
-- **Google Analytics**: User behavior analytics
-
-#### **Server Monitoring**
-- **Railway Dashboard**: Built-in monitoring
-- **Heroku Metrics**: Performance monitoring
-- **DigitalOcean Monitoring**: Server metrics
-
-### **CI/CD Pipeline**
-
-#### **GitHub Actions** 🤖
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy
-on:
-  push:
-    branches: [ main ]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm install
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-```
-
-### **Post-Deployment Checklist**
-
-- [ ] Frontend builds successfully
-- [ ] Backend API responds correctly
-- [ ] Database connections work
-- [ ] Authentication flows properly
-- [ ] File uploads function
-- [ ] AI processing works
-- [ ] SSL certificate is valid
-- [ ] Domain resolves correctly
-- [ ] Email notifications work
-- [ ] Error handling functions
-- [ ] Performance is acceptable
-- [ ] Mobile responsiveness works
-
-### **Rollback Plan**
-
-If something goes wrong:
-1. Check deployment logs
-2. Verify environment variables
-3. Test locally first
-4. Rollback to previous version if needed
-5. Update documentation with fixes
-
-### **Cost Estimation**
-
-#### **Free Tier Limits**
-- **Vercel**: 100GB bandwidth/month
-- **Railway**: 512MB RAM, 1GB storage
-- **MongoDB Atlas**: 512MB storage
-- **Firebase**: 1GB storage, 50k/month Auth users
-
-#### **Production Costs** (Estimated)
-- **Vercel Pro**: $20/month (unlimited bandwidth)
-- **Railway**: $5/month (1GB RAM)
-- **MongoDB Atlas**: $9/month (2GB RAM, 10GB storage)
-- **Domain**: $12/year
-- **Total**: ~$35/month for small production app
-
-**Need help with deployment?** Check our [Deployment Guide](docs/DEPLOYMENT.md) or open an issue!
+### **Database (MongoDB Atlas)**
+- Set up MongoDB Atlas cluster
+- Configure connection string
+- Enable IP whitelist
 
 ## 📊 **Performance**
 
@@ -661,244 +441,33 @@ If something goes wrong:
 
 ## 🤝 **Contributing**
 
-We love contributions! Whether it's bug fixes, new features, or improvements to documentation, your help is greatly appreciated.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### 🚀 **Getting Started as a Contributor**
+## 📄 **License**
 
-1. **Fork the repository**
-   ```bash
-   git clone https://github.com/aryan-yadavv/integrationgenai.git
-   cd integrationgenai
-   ```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
+## 🙏 **Acknowledgments**
 
-3. **Install dependencies**
-   ```bash
-   npm install
-   cd frontend && npm install && cd ..
-   cd Backend && npm install && cd ..
-   ```
+- **Firebase**: Authentication and database services
+- **Google AI**: Advanced language processing
+- **React Community**: Amazing ecosystem and tools
+- **Tailwind CSS**: Beautiful utility-first CSS
+- **Open Source**: All the amazing open source libraries
 
-4. **Make your changes**
-   - Follow the existing code style
-   - Add tests for new features
-   - Update documentation as needed
+## 📞 **Support**
 
-5. **Test your changes**
-   ```bash
-   # Run tests
-   npm test
-
-   # Check linting
-   npm run lint
-
-   # Build the project
-   npm run build
-   ```
-
-6. **Commit your changes**
-   ```bash
-   git add .
-   git commit -m "Add: amazing new feature"
-   ```
-
-7. **Push to your fork**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-
-8. **Create a Pull Request**
-   - Go to the original repository
-   - Click "New Pull Request"
-   - Fill out the template
-   - Submit!
-
-### 📝 **Pull Request Guidelines**
-
-- **Title**: Use conventional commit format (e.g., "feat: add user authentication")
-- **Description**: Explain what changes you made and why
-- **Screenshots**: Include screenshots for UI changes
-- **Tests**: Ensure all tests pass
-- **Documentation**: Update README if needed
-
-### 🐛 **Reporting Bugs**
-
-1. Check if the bug already exists in [Issues](https://github.com/aryan-yadavv/integrationgenai/issues)
-2. If not, create a new issue
-3. Include:
-   - Clear title and description
-   - Steps to reproduce
-   - Expected vs actual behavior
-   - Screenshots or error logs
-   - Your environment (OS, browser, Node version)
-
-### 💡 **Feature Requests**
-
-1. Create a new issue with label "enhancement"
-2. Describe the feature and its benefits
-3. Include mockups or examples if possible
-4. Discuss implementation approach
-
-### 🛠️ **Development Setup**
-
-#### **Code Style**
-- Use ESLint and Prettier
-- Follow React best practices
-- Use TypeScript for new components (optional)
-
-#### **Testing**
-- Unit tests with Jest
-- Integration tests with React Testing Library
-- E2E tests with Cypress (planned)
-
-#### **Git Workflow**
-- `main` - production-ready code
-- `develop` - development branch
-- `feature/*` - new features
-- `bugfix/*` - bug fixes
-- `hotfix/*` - urgent fixes
-
-## 📁 **Project Structure**
-
-```
-integrationgenai/
-├── 📁 frontend/                    # React frontend application
-│   ├── 📁 public/                  # Static assets
-│   ├── 📁 src/
-│   │   ├── 📁 components/          # Reusable UI components
-│   │   │   ├── 📁 BeautifulParticles/  # Animation components
-│   │   │   ├── 📁 BeautifulLoader/     # Loading components
-│   │   │   └── 📁 .../
-│   │   ├── 📁 pages/               # Main application pages
-│   │   │   ├── 📄 BeautifulUpload.js      # File upload page
-│   │   │   ├── 📄 BeautifulDashboard.js   # Dashboard page
-│   │   │   └── 📄 .../
-│   │   ├── 📁 context/             # React context providers
-│   │   │   └── 📄 AuthProvider.js         # Authentication context
-│   │   ├── 📁 lib/                 # Utility functions
-│   │   └── 📁 assets/              # Images, icons, fonts
-│   ├── 📄 package.json
-│   └── 📄 README.md               # Frontend documentation
-│
-├── 📁 Backend/                     # Node.js backend server
-│   ├── 📁 routes/                  # API routes
-│   │   ├── 📄 auth.js             # Authentication routes
-│   │   ├── 📄 documents.js        # Document processing routes
-│   │   └── 📄 .../
-│   ├── 📁 middleware/              # Express middleware
-│   │   ├── 📄 auth.js             # Authentication middleware
-│   │   ├── 📄 upload.js           # File upload middleware
-│   │   └── 📄 .../
-│   ├── 📁 scripts/                 # Python AI scripts
-│   │   ├── 📄 text_simplifier.py  # AI text processing
-│   │   ├── 📄 pdf_extractor.py    # PDF text extraction
-│   │   └── 📄 requirements.txt
-│   ├── 📁 uploads/                 # File upload storage
-│   ├── 📄 server.js               # Main server file
-│   └── 📄 package.json
-│
-├── 📁 docs/                       # Documentation
-│   ├── 📄 API.md                  # API documentation
-│   ├── 📄 DEPLOYMENT.md           # Deployment guide
-│   └── 📄 CONTRIBUTING.md         # Contributing guidelines
-│
-├── 📁 scripts/                    # Utility scripts
-│   ├── 📄 setup.sh               # Environment setup
-│   ├── 📄 deploy.sh              # Deployment script
-│   └── 📄 test.sh                # Testing script
-│
-├── 📄 .gitignore
-├── 📄 LICENSE
-├── 📄 CONTRIBUTING.md
-└── 📄 README.md                  # This file!
-```
-
-## 🔮 **Roadmap**
-
-### **Phase 1** ✅ **Completed**
-- [x] Basic document upload
-- [x] AI text simplification
-- [x] Beautiful UI design
-- [x] Firebase authentication
-- [x] MongoDB integration
-
-### **Phase 2** 🚧 **In Progress**
-- [ ] Advanced AI analysis
-- [ ] Batch document processing
-- [ ] Document comparison tools
-- [ ] Export functionality (PDF, Word)
-- [ ] User preferences and settings
-
-### **Phase 3** 📋 **Planned**
-- [ ] Multi-language support
-- [ ] Team collaboration features
-- [ ] API integrations
-- [ ] Mobile app development
-- [ ] Advanced analytics dashboard
-
-### **Phase 4** 💭 **Future**
-- [ ] Machine learning model training
-- [ ] Plugin system
-- [ ] Enterprise features
-- [ ] Custom AI model integration
-- [ ] Blockchain document verification
-
-## 📞 **Support & Contact**
-
-<div align="center">
-
-### **Get Help & Stay Connected** 🌐
-
-| **Platform** | **Link** | **Description** |
-|-------------|----------|-----------------|
-| 🐛 **Issues** | [GitHub Issues](https://github.com/aryan-yadavv/integrationgenai/issues) | Report bugs and request features |
-| 💬 **Discussions** | [GitHub Discussions](https://github.com/aryan-yadavv/integrationgenai/discussions) | Ask questions and share ideas |
-| 📧 **Email** | [aryan.yadav@example.com](mailto:aryan.yadav@example.com) | Direct contact |
-| 💼 **LinkedIn** | [Aryan Yadav](https://linkedin.com/in/aryan-yadav) | Professional networking |
-| 🐦 **Twitter** | [@aryan_yadavv](https://twitter.com/aryan_yadavv) | Latest updates |
-
-</div>
-
-## 🏆 **Acknowledgments**
-
-### **Core Contributors** 👥
-- **Aryan Yadav** - *Project Lead & Full-Stack Developer*
-- *Open for more contributors!*
-
-### **Technologies & Libraries** 🛠️
-- **React** - Amazing UI library
-- **Node.js** - Powerful JavaScript runtime
-- **Firebase** - Authentication and hosting
-- **Google AI** - Advanced language processing
-- **MongoDB** - Flexible document database
-- **Tailwind CSS** - Beautiful utility-first CSS
-
-### **Open Source Community** 💝
-Special thanks to all the amazing open-source projects and communities that made this possible:
-- [React Community](https://reactjs.org/community)
-- [Node.js Community](https://nodejs.org/community)
-- [Firebase Community](https://firebase.google.com/community)
-- [Tailwind CSS](https://tailwindcss.com/)
-- All contributors and supporters
-
-## 📜 **License**
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-
-**Made with ❤️ by [Aryan Yadav](https://github.com/aryan-yadavv)**
-
-*Empowering everyone to understand legal documents through the power of AI*
+If you have any questions or need help, please:
+- Open an issue on GitHub
+- Contact the development team
+- Check the documentation
 
 ---
 
-**⭐ If you found this project helpful, please give it a star!**
+**Built with ❤️ using React, Node.js, and AI technology**
 
-[⬆️ Back to Top](#-legalease-ai---professional-legal-document-analysis-platform)
-
-</div>
+*Transform your legal documents into simple, understandable language with the power of AI!*
